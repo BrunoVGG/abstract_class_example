@@ -3,7 +3,7 @@
 abstract class Animal
 {
     public $name;
-    abstract protected function velocidade();
+    abstract protected function speed($way);
 }
 
 class Wolf extends Animal
@@ -12,8 +12,14 @@ class Wolf extends Animal
         $this->name = "Lobo"; 
     }
     
-    public function velocidade(){
-        return 5;
+    public function speed($way){
+        if($way == "run"){
+            return 5;
+        } else if($way == "fly"){
+            return 0; 
+        } else if($way == "swim"){
+            return 2;
+        } 
     }
 }
 
@@ -21,21 +27,50 @@ class Turtle extends Animal
 {
     function __construct(){
         $this->name = "Tartaruga";
-    }
+    }    
     
-    public function velocidade(){
-        return 1;
+    public function speed($way){
+        if($way == "run"){
+            return 1;
+        } else if($way == "fly"){
+            return 0; 
+        } else if($way == "swim"){
+            return 3;
+        } 
+    }
+}
+
+class Eagle extends Animal
+{
+    function __construct(){
+        $this->name = "Eagle";
+    }    
+    
+    public function speed($way){
+        if($way == "run"){
+            return 1;
+        } else if($way == "fly"){
+            return 8; 
+        } else if($way == "swim"){
+            return 0;
+        } 
     }
 }
 
 $myAnimal = new Turtle;
 
-echo $myAnimal->velocidade()."<br>";
-echo $myAnimal->name;
-echo "<br>END<br><br>";
+echo $myAnimal->name."<br>";
+echo "Speed to swim: ".$myAnimal->speed("swim");
+echo "<hr><br>";
 
 $myAnimal = new Wolf;
 
-echo $myAnimal->velocidade()."<br>";
-echo $myAnimal->name;
-echo "<br>END<br>";
+echo $myAnimal->name."<br>";
+echo "Speed to run: ".$myAnimal->speed("run");
+echo "<hr><br>";
+
+$myAnimal = new Eagle;
+
+echo $myAnimal->name."<br>";
+echo "Speed to fly: ".$myAnimal->speed("fly");
+echo "<hr><br>";
